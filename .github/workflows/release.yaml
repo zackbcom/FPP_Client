@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: release
-      url: https://pypi.org/p/fpp-client
+      url: https://pypi.org/p/fppclient
     permissions:
       contents: write
       id-token: write

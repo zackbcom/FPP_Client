@@ -110,8 +110,6 @@ class FPP:
             msg = f"Error occurred while communicating with FPP device at {self.host}"
             raise FPPConnectionError(msg) from exception
 
-
-
         return response_data
 
     async def update(self) -> Device:
@@ -153,7 +151,6 @@ class FPP:
             )
             raise FPPEmptyResponseError(msg)
         data["sequences"] = sequences
-
 
         if not self._device:
             self._device = Device.from_dict(data)

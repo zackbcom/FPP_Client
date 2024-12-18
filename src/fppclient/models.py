@@ -1,4 +1,5 @@
 """Models for FPP Client."""
+# pylint: disable=C0103
 
 from __future__ import annotations
 
@@ -137,8 +138,6 @@ class SystemStatus(BaseModel):  # pylint: disable=too-many-instance-attributes
     )
 
 
-
-
 @dataclass(kw_only=True)
 class Sequence(BaseModel):
     """Sequence information."""
@@ -171,7 +170,7 @@ class Playlist(BaseModel):
     empty: bool = False
     desc: str = ""
     random: int = 0
-    leadIn: list = field(default_factory=list)
+    leadIn: list[PlaylistItem] = field(default_factory=list)
     mainPlaylist: list[PlaylistItem] = field(default_factory=list)
 
 

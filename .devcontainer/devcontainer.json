@@ -4,7 +4,7 @@
   },
   "customizations": {
     "codespaces": {
-      "openFiles": ["README.md", "src/fpp/fpp.py", "src/fpp/models.py"]
+      "openFiles": ["README.md", "src/fppclient/fpp.py", "src/fppclient/models.py"]
     },
     "vscode": {
       "extensions": [

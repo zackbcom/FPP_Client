@@ -1,0 +1,2088 @@
+{
+  "endpoints": [
+    {
+      "endpoint": "help",
+      "methods": {
+        "GET": {
+          "desc": "This help page"
+        }
+      }
+    },
+    {
+      "endpoint": "backups/devices",
+      "methods": {
+        "GET": {
+          "desc": "Returns a list of devices like USBs or SSDs attached to the system which can be used",
+          "output": [
+            {
+              "name": "sda1",
+              "size": 7.5,
+              "model": "Cruiser Blade",
+              "vendor": "SanDisk"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "backups/configuration",
+      "methods": {
+        "POST": {
+          "desc": "Generate a new JSON Settings backup for all settings areas. If a Alternate Backup Location has been set, the backup is also copied to that location.",
+          "input": "The describing comment to be added to the backup",
+          "output": {
+            "success": true,
+            "backup_file_path": "/home/fpp/media/config/backups/FPP_all-backup_v6_20230124212305.json",
+            "copied_to_usb": true
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "backups/configuration/list",
+      "methods": {
+        "GET": {
+          "desc": "Gets a list of JSON Configuration backups stored locally or if an Alternate Backup Device is set, a list of backups on local and USB",
+          "output": [
+            {
+              "backup_alternative_location": false,
+              "backup_filedirectory": "/home/fpp/media/config/backups",
+              "backup_filename": "FPP_all-backup_v6_20230124212305.json",
+              "backup_comment": "FPP Settings - Disable Scheduler setting was set to ( 0 ).",
+              "backup_time": "Tue Jan 24 21:23:05 2023",
+              "backup_time_unix": "1674559385"
+            },
+            {
+              "backup_alternative_location": true,
+              "backup_filedirectory": "/mnt/tmp/Automatic_Backups/config/backups",
+              "backup_filename": "FPP_all-backup_v6_20230124210519.json",
+              "backup_comment": "Schedule was modified.",
+              "backup_time": "Tue Jan 24 21:05:19 2023",
+              "backup_time_unix": "1674558319"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "backups/configuration/list/:DeviceName",
+      "methods": {
+        "GET": {
+          "desc": "Returns a list of JSON Configuration files on a specified device (i.e a alternate storage device). Available can be devices obtained from '/backups/devices' or the current set device via the jsonConfigBackupUSBLocation setting value.",
+          "output": [
+            "FPP_all-backup_v6_20230114025351.json",
+            "FPP_all-backup_v6_20230114025354.json",
+            "FPP_all-backup_v6_20230114214459.json",
+            "FPP_all-backup_v6_20230114215622.json"
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "backups/configuration/:Directory/:BackupFilename",
+      "methods": {
+        "GET": {
+          "desc": "Downloads a specific JSON Backup, Directory is are either JsonBackups (local) or JsonAlternateBackup (configured alternate device). API backups/configuration/list can be used to get valid directories and files.",
+          "output": "Contents of the specified JSON Settings backup as a download"
+        },
+        "DELETE": {
+          "desc": "Deletes a specific JSON Backup, Directory is are either JsonBackups (local) or JsonAlternateBackup (configured alternate device). API backups/configuration/list can be used to get valid directories and files.",
+          "output": {
+            "Status": "OK",
+            "file": "FPP_all-backup_v6_20230124210514.json",
+            "dir": "JsonBackupsAlternate"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "backups/configuration/restore/:Directory/:BackupFilename",
+      "methods": {
+        "POST": {
+          "desc": "Restored the specified JSON Backup, Directory is either JsonBackups (local) or JsonAlternateBackup (configured alternate device). API backups/configuration/list can be used to get valid directory and file combinations.",
+          "output": {
+            "Success": true,
+            "Message": {
+              "success": true,
+              "message": {
+                "channelInputs": {
+                  "VALID_DATA": true,
+                  "ATTEMPT": true,
+                  "SUCCESS": true
+                },
+                "channelOutputs": {
+                  "universes": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "falcon_pixelnet_DMX": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": {
+                      "Falcon.FPDV1": true
+                    }
+                  },
+                  "pixel_strings": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "led_panels": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "other": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  }
+                },
+                "misc_configs": {
+                  "configs": {
+                    "VALID_DATA": false,
+                    "SUCCESS": false
+                  }
+                },
+                "outputProcessors": {
+                  "VALID_DATA": true,
+                  "ATTEMPT": true,
+                  "SUCCESS": true
+                },
+                "show_setup": {
+                  "playlist": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "schedule": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "scripts": {
+                    "VALID_DATA": true,
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  }
+                },
+                "settings": {
+                  "VALID_DATA": true,
+                  "system_settings": {
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "commandPresets": {
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "proxies": {
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "email": {
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  },
+                  "timezone": {
+                    "ATTEMPT": true,
+                    "SUCCESS": true
+                  }
+                },
+                "virtualEEPROM": {
+                  "VALID_DATA": true,
+                  "ATTEMPT": true,
+                  "SUCCESS": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "commands",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets a JSON description of the FPP Commands",
+          "output": [
+            {
+              "name": "Next Playlist Item"
+            },
+            {
+              "name": "Start Playlist",
+              "args": [
+                {
+                  "description": "Playlist Name",
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "channel/input/stats",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Returns the E1.31 or DDP statistics for inbound packets. Attempts to return a meaningful error if connection to FPPD fails.",
+          "output": {
+            "status": "OK",
+            "universes": [
+              {
+                "bytesReceived": "325632",
+                "errors": "1",
+                "id": 1,
+                "packetsReceived": "636",
+                "startChannel": 1
+              },
+              {
+                "bytesReceived": "325632",
+                "errors": "4",
+                "id": 2,
+                "packetsReceived": "636",
+                "startChannel": 513
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "channel/output/processors",
+      "fppd": false,
+      "methods": {
+        "GET": {
+          "desc": "Returns the current configuration of any output processors.",
+          "output": {
+            "outputProcessors": [
+              {
+                "type": "Brightness",
+                "active": 0,
+                "description": "",
+                "start": 1,
+                "count": 10,
+                "brightness": 50,
+                "gamma": 1
+              },
+              {
+                "type": "Brightness",
+                "active": 0,
+                "description": "",
+                "start": 100,
+                "count": 2,
+                "brightness": 24,
+                "gamma": 1
+              }
+            ],
+            "status": "OK"
+          }
+        },
+        "POST": {
+          "desc": "Overwrites the output Processor settings file with a new configuration and returns back the file after the save",
+          "input": {
+            "outputProcessors": [
+              {
+                "type": "Brightness",
+                "active": 0,
+                "description": "",
+                "start": 1,
+                "count": 10,
+                "brightness": 50,
+                "gamma": 1
+              },
+              {
+                "type": "Brightness",
+                "active": 0,
+                "description": "",
+                "start": 100,
+                "count": 2,
+                "brightness": 24,
+                "gamma": 1
+              }
+            ]
+          },
+          "output": {
+            "outputProcessors": [
+              {
+                "type": "Brightness",
+                "active": 0,
+                "description": "",
+                "start": 1,
+                "count": 10,
+                "brightness": 50,
+                "gamma": 1
+              },
+              {
+                "type": "Brightness",
+                "active": 0,
+                "description": "",
+                "start": 100,
+                "count": 2,
+                "brightness": 24,
+                "gamma": 1
+              }
+            ],
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "channel/output/:file",
+      "fppd": false,
+      "methods": {
+        "GET": {
+          "desc": "Returns the current configuration of the specified output in JSON format",
+          "output": "JSON output varies based on file."
+        },
+        "POST": {
+          "desc": "Overwrites the specified output configuration file with the specified JSON",
+          "input": "Format Varies based on File",
+          "output": "Format Varies based on File"
+        }
+      }
+    },
+    {
+      "endpoint": "command/:CommandName(/:Args)",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Runs the given command with arguments separated by a slash /",
+          "output": "(dependent on Command run)"
+        },
+        "POST": {
+          "desc": "Runs the given command with arguments provided in POST data instead of URL, all args documented in help page",
+          "input": "(JSON data dependent on command being run)",
+          "output": "(dependent on Command run)"
+        }
+      }
+    },
+    {
+      "endpoint": "configfile(/:SubDir)",
+      "methods": {
+        "GET": {
+          "desc": "Get list of config files in /home/fpp/media/config(/:SubDir)",
+          "output": {
+            "Path": ":SubDir",
+            "ConfigFiles": ["File1", "File2", "File3"]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "configfile(/:SubDir)/:FileName",
+      "methods": {
+        "GET": {
+          "desc": "Get contents of config file /home/fpp/media/config(/:SubDir)/:FileName",
+          "output": "(Raw config file contents)"
+        },
+        "POST": {
+          "desc": "Upload contents of config file /home/fpp/media/config(/:SubDir)/:FileName",
+          "input": "(Raw config file contents)",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        },
+        "DELETE": {
+          "desc": "Delete config file /home/fpp/media/config(/:SubDir)/:FileName",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "email/configure",
+      "methods": {
+        "POST": {
+          "desc": "Configure outbound email using existing settings",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "email/test",
+      "methods": {
+        "POST": {
+          "desc": "Send test email using existing settings",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "files/:DirName",
+      "methods": {
+        "GET": {
+          "desc": "Get list of files in :DirName where :DirName is one of ('config', 'effects', 'images', 'logs', 'music', 'playlists', 'plugins', 'scripts', 'sequences', 'tmp', 'uploads', 'videos'). If ?nameOnly=1 is supplied then the array will only contain filenames",
+          "output": {
+            "status": "ok",
+            "files": [
+              {
+                "name": "Christmas Every Day.mp3",
+                "mtime": "09/23/20  07:47 PM",
+                "sizeBytes": 7929000,
+                "sizeHuman": "7.56MB",
+                "playtimeSeconds": "03m:46s"
+              },
+              {
+                "name": "Test.mp3",
+                "mtime": "09/23/20  07:47 PM",
+                "sizeBytes": 3618722,
+                "sizeHuman": "3.45MB",
+                "playtimeSeconds": "03m:46s"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "files/zip/:DirNames",
+      "methods": {
+        "GET": {
+          "desc": "Downloads all files in the specified directory in zip format. Supports comma separated list of directories.",
+          "output": "A Zip file"
+        }
+      }
+    },
+    {
+      "endpoint": "file/move/:Filename",
+      "methods": {
+        "GET": {
+          "desc": "Moves the specified file from the uploads directory to the correct subfolder returning a status of \"OK\" or an Error message if not successful",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "file/:DirName/copy/:source/:dest",
+      "methods": {
+        "POST": {
+          "desc": "Copies the specified file from :source to :dest where :DirName is one of ('config', 'effects', 'images', 'logs', 'music', 'playlists', 'plugins', 'scripts', 'sequences', 'tmp', 'upload', 'videos').",
+          "output": {
+            "status": "success",
+            "original": "test.py",
+            "new": "test2.py"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "file/:DirName/rename/:source/:dest",
+      "methods": {
+        "POST": {
+          "desc": "Renames the specified file from :source to :dest where :DirName is one of ('config', 'effects', 'images', 'logs', 'music', 'playlists', 'plugins', 'scripts', 'sequences', 'tmp', 'upload', 'videos').",
+          "output": {
+            "status": "success",
+            "original": "test.py",
+            "new": "test2.py"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "file/:DirName",
+      "methods": {
+        "PATCH": {
+          "desc": "Uploads a chunk of a file. Uses Upload-Length, Upload-Name, and Upload-Offset HTTP headers to define the location of the chunk that is being uploaded.",
+          "output": {
+            "status": "OK",
+            "file": "block_driveways.xbkp",
+            "dir": "uploads"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "file/:DirName(/:SubDir)/:Filename",
+      "methods": {
+        "GET": {
+          "desc": "Downloads the specified File where :DirName is one of ('config', 'effects', 'images', 'logs', 'music', 'playlists', 'plugins', 'scripts', 'sequences', 'tmp', 'upload', 'videos'). Optionally can provide a :SubDir. If ?tail=# is supplied then only the specified number of lines from the end of the file are returned. ?play=1 then will set the content type to be played rather than downloaded.",
+          "output": "The File Contents"
+        },
+        "DELETE": {
+          "desc": "Deletes the specified file where :DirName is one of ('config', 'effects', 'images', 'logs', 'music', 'playlists', 'plugins', 'scripts', 'sequences', 'tmp', 'upload', 'videos'). If ?nameOnly=1 is supplied then the array will only contain filenames",
+          "output": {
+            "status": "OK",
+            "file": "block_driveways.xbkp",
+            "dir": "uploads"
+          }
+        },
+        "POST": {
+          "desc": "Uploads the specified file where :DirName is one of ('config', 'effects', 'events', 'images', 'logs', 'music', 'playlists', 'plugins', 'scripts', 'sequences', 'tmp', 'upload', 'videos'). Takes optional params of bs(block size) and sb(start block) to upload fragments.  May not support chunked Transfer-Encoding.",
+          "output": {
+            "status": "OK",
+            "file": "beepbeep.fseq",
+            "dir": "sequences"
+          }
+        }
+      }
+    },
+
+    {
+      "endpoint": "git/originLog",
+      "methods": {
+        "GET": {
+          "desc": "Returns a a list of the commits that are in the Origin (usually Github) but not the local repository.",
+          "output": {
+            "status": "OK",
+            "rows": [
+              {
+                "hash": "95ccb370e45272d8aed76aabfa55e60d489a8280",
+                "author": "GithubUser1",
+                "msg": "Use our SaveJsonToString() when generating MQTT warnings JSON message."
+              },
+              {
+                "hash": "2fad5ad941baea49edaab834429343b42981bcc5",
+                "author": "GithubUser2",
+                "msg": "Move Playlist initialization into main() via Player::Init()"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "git/releases/os",
+      "methods": {
+        "GET": {
+          "desc": "Returns lists of fppos files available locally or on Github for the current platform",
+          "output": {
+            "status": "OK",
+            "downloaded": ["Pi-v4.4.fppos", "Pi-5.0-alpha1.fppos"],
+            "files": [
+              {
+                "tag": "5.1",
+                "release_name": "5.1",
+                "filename": "Pi-5.1.1.fppos",
+                "url": "https://github.com/FalconChristmas/fpp/releases/download/5.1/Pi-5.1.1.fppos",
+                "asset_id": 42917234,
+                "downloaded": false
+              },
+              {
+                "tag": "5.0",
+                "release_name": "5.0",
+                "filename": "BBB-5.0.fppos",
+                "url": "https://github.com/FalconChristmas/fpp/releases/download/5.0/BBB-5.0.fppos",
+                "asset_id": 41667478,
+                "downloaded": false
+              },
+              {
+                "tag": "5.0-alpha1",
+                "release_name": "5.0-alpha1",
+                "filename": "BBB-5.0-alpha1.fppos",
+                "url": "https://github.com/FalconChristmas/fpp/releases/download/5.0-alpha1/BBB-5.0-alpha1.fppos",
+                "asset_id": 37964219,
+                "downloaded": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "git/reset",
+      "methods": {
+        "GET": {
+          "desc": "Performs a hard rest on the current branch, removing any local changes",
+          "output": {
+            "status": "OK",
+            "log": [
+              "HEAD is now at a1b65d43 Git Reset moved - #944",
+              "Entering 'external/RF24'",
+              "HEAD is now at ebc3abe Fix typo, missing space.",
+              "Entering 'external/rpi-rgb-led-matrix'",
+              "HEAD is now at 487facb With outline: move one over.",
+              "Entering 'external/rpi_ws281x'",
+              "HEAD is now at 3a20f1b Merge pull request #401 from Gadgetoid/patch-readme-spi-pi4",
+              "Entering 'external/spixels'",
+              "HEAD is now at 307d46f Support Raspberry Pi 4"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "git/status",
+      "methods": {
+        "GET": {
+          "desc": "Returns the status of the local git branch including any dirty files. (Same as 'git status') ",
+          "output": {
+            "status": "OK",
+            "log": "On branch master\nYour branch is up to date with 'origin/master'."
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "git/branches",
+      "methods": {
+        "GET": {
+          "desc": "Returns an array of branches that can be switched to",
+          "output": ["master", "v7.3", "v7.2", "v7.1", "v7.0"]
+        }
+      }
+    },
+    {
+      "endpoint": "media",
+      "methods": {
+        "GET": {
+          "desc": "Get list of media files (includes both music and video files).",
+          "output": ["Frosty.mp4", "Jingle_Bells.mp3"]
+        }
+      }
+    },
+    {
+      "endpoint": "media/:MediaName/duration",
+      "methods": {
+        "GET": {
+          "desc": "Get duration of a media item",
+          "output": {
+            "1min_720p29_2014-10-01.mp4": {
+              "duration": 60.010666666667
+            }
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "media/:MediaName/meta",
+      "methods": {
+        "GET": {
+          "desc": "Get meta data for a specific media file",
+          "output": {
+            "programs": [],
+            "streams": [
+              {
+                "index": 0,
+                "codec_name": "h264",
+                "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+                "profile": "High",
+                "codec_type": "video",
+                "codec_time_base": "500/29971",
+                "width": 480,
+                "height": 640,
+                "display_aspect_ratio": "3:4",
+                "pix_fmt": "yuv420p"
+              },
+              {
+                "index": 1,
+                "codec_name": "aac",
+                "codec_long_name": "AAC (Advanced Audio Coding)",
+                "codec_type": "audio",
+                "codec_time_base": "1/44100",
+                "codec_tag_string": "mp4a"
+              }
+            ],
+            "chapters": [],
+            "format": {
+              "filename": "/home/fpp/media/videos/Frosty.mp4",
+              "nb_streams": 2,
+              "nb_programs": 0,
+              "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+              "format_long_name": "QuickTime / MOV",
+              "start_time": "0.000000",
+              "duration": "37.914000",
+              "size": "12177878",
+              "bit_rate": "2569579",
+              "probe_score": 100,
+              "tags": {
+                "major_brand": "isom",
+                "minor_version": "512",
+                "compatible_brands": "isomiso2avc1mp41",
+                "creation_time": "1970-01-01 00:00:00",
+                "title": "img_0872.mp4",
+                "artist": "Avidemux",
+                "encoder": "Lavf52.61.0"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "models",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets info on all of the Pixel Overlay Models",
+          "output": [
+            {
+              "ChannelCount": 6144,
+              "Name": "Matrix",
+              "Orientation": "horizontal",
+              "StartChannel": 1,
+              "StartCorner": "TL",
+              "StrandsPerString": 1,
+              "StringCount": 32
+            },
+            {
+              "ChannelCount": 6144,
+              "Name": "Matrix2",
+              "Orientation": "horizontal",
+              "StartChannel": 6145,
+              "StartCorner": "BL",
+              "StrandsPerString": 1,
+              "StringCount": 16
+            }
+          ]
+        },
+        "POST": {
+          "desc": "Uploads a new model-overlays.json file",
+          "input": {
+            "models": [
+              {
+                "ChannelCount": 6144,
+                "Name": "Matrix",
+                "Orientation": "horizontal",
+                "StartChannel": 1,
+                "StartCorner": "TL",
+                "StrandsPerString": 1,
+                "StringCount": 32
+              }
+            ]
+          },
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "models/:ModelName",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets a single Pixel Overlay Model",
+          "output": [
+            {
+              "ChannelCount": 6144,
+              "Name": "Matrix",
+              "Orientation": "horizontal",
+              "StartChannel": 1,
+              "StartCorner": "TL",
+              "StrandsPerString": 1,
+              "StringCount": 32
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/fonts",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets a list of fonts that can be used on the overlay models",
+          "output": [
+            "Courier",
+            "Courier-Bold",
+            "Courier-BoldOblique",
+            "Helvetica",
+            "Helvetica-Bold",
+            "Times-Roman",
+            "Times-Bold",
+            "Times-Italic",
+            "Times-BoldItalic",
+            "Symbol"
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/models",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets a list of the Pixel Overlay Models and their state",
+          "output": [
+            {
+              "ChannelCount": 6144,
+              "Name": "Matrix",
+              "Orientation": "horizontal",
+              "StartChannel": 1,
+              "StartCorner": "TL",
+              "StrandsPerString": 1,
+              "StringCount": 32,
+              "isActive": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets the given overlay model and it's state",
+          "output": {
+            "ChannelCount": 6144,
+            "Name": "Matrix",
+            "Orientation": "horizontal",
+            "StartChannel": 1,
+            "StartCorner": "TL",
+            "StrandsPerString": 1,
+            "StringCount": 32,
+            "isActive": 0
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/clear",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Clears the given model",
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/data",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets the current channel data for the model",
+          "output": {
+            "data": [0, 0, 0, 0, 0, 0],
+            "rle": false,
+            "isLocked": false
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/data/rle",
+      "fppd": true,
+      "methods": {
+        "GET": {
+          "desc": "Gets the current channel data for the model encoded in RLE format.  RLE data is in quads in the format count,a,b,c[,count,a,b,c]... where a,b,c are the 3 data channels for a pixel.",
+          "output": {
+            "data": [10, 255, 0, 0, 3, 0, 255, 0, 4, 255, 255, 255],
+            "rle": true,
+            "isLocked": false
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/save",
+      "fppd": true,
+      "methods": {
+        "PUT": {
+          "desc": "Saves the contents of the overlay model to a file in the images directory.",
+          "input": {
+            "File": "ImageFilename.png"
+          },
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/state",
+      "fppd": true,
+      "methods": {
+        "PUT": {
+          "desc": "Sets the state of the overlay model. (0 = off, 1 = override, 2 = overlay)",
+          "input": {
+            "State": 1
+          },
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/fill",
+      "fppd": true,
+      "methods": {
+        "PUT": {
+          "desc": "Fills the entire overlay with the given color",
+          "input": {
+            "RGB": [255, 0, 0]
+          },
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/pixel",
+      "fppd": true,
+      "methods": {
+        "PUT": {
+          "desc": "Sets a specific pixel in the model to the given color",
+          "input": {
+            "X": 10,
+            "Y": 12,
+            "RGB": [255, 0, 0]
+          },
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "overlays/model/:ModelName/text",
+      "fppd": true,
+      "methods": {
+        "PUT": {
+          "desc": "Displays text on the overlay model. Message: the text to display, Position: Center, L2R, R2L, B2T, T2B. PixelsPerSecond: speed to move text across screen",
+          "input": {
+            "Message": "Hello",
+            "Position": "L2R",
+            "Font": "Helvetica",
+            "FontSize": 12,
+            "AntiAlias": false,
+            "PixelsPerSecond": 5,
+            "Color": "#FF000",
+            "AutoEnable": false
+          },
+          "output": "OK"
+        }
+      }
+    },
+    {
+      "endpoint": "network/dns",
+      "methods": {
+        "GET": {
+          "desc": "returns information DNS configuration. If not configured, status will be 'Not Configured'",
+          "output": {
+            "DNS1": "192.168.50.1",
+            "DNS2": "192.168.1.1",
+            "status": "OK"
+          }
+        },
+        "POST": {
+          "desc": "Updates the DNS Configuration",
+          "input": {
+            "DNS1": "192.168.50.1",
+            "DNS2": "192.168.1.1"
+          },
+          "output": {
+            "status": "OK",
+            "DNS": {
+              "DNS1": "192.168.50.1",
+              "DNS2": "192.168.1.1"
+            }
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "network/interface",
+      "methods": {
+        "GET": {
+          "desc": "Returns detailed information about the network interfaces and their IP addresses as well as wifi strength",
+          "output": [
+            {
+              "ifindex": 1,
+              "ifname": "lo",
+              "flags": ["LOOPBACK", "UP", "LOWER_UP"],
+              "mtu": 65536,
+              "qdisc": "noqueue",
+              "operstate": "UNKNOWN",
+              "group": "default",
+              "txqlen": 1000,
+              "addr_info": [
+                {
+                  "family": "inet",
+                  "local": "127.0.0.1",
+                  "prefixlen": 8,
+                  "scope": "host",
+                  "label": "lo",
+                  "valid_life_time": 4294967295,
+                  "preferred_life_time": 4294967295
+                }
+              ]
+            },
+            {
+              "ifindex": 2,
+              "ifname": "wlan0",
+              "flags": ["BROADCAST", "MULTICAST", "DYNAMIC", "UP", "LOWER_UP"],
+              "mtu": 1500,
+              "qdisc": "pfifo_fast",
+              "operstate": "UP",
+              "group": "default",
+              "txqlen": 1000,
+              "addr_info": [
+                {
+                  "family": "inet",
+                  "local": "192.168.50.146",
+                  "prefixlen": 24,
+                  "broadcast": "192.168.50.255",
+                  "scope": "global",
+                  "label": "wlan0",
+                  "valid_life_time": 4294967295,
+                  "preferred_life_time": 4294967295
+                }
+              ],
+              "wifi": {
+                "interface": "wlan0",
+                "link": 52,
+                "level": -58,
+                "noise": -256,
+                "desc": "good"
+              }
+            },
+            {
+              "ifindex": 3,
+              "ifname": "eth0",
+              "flags": ["BROADCAST", "MULTICAST", "DYNAMIC", "UP", "LOWER_UP"],
+              "mtu": 1500,
+              "qdisc": "pfifo_fast",
+              "operstate": "UP",
+              "group": "default",
+              "txqlen": 1000,
+              "addr_info": [
+                {
+                  "family": "inet",
+                  "local": "192.168.1.146",
+                  "prefixlen": 24,
+                  "broadcast": "192.168.1.255",
+                  "scope": "global",
+                  "label": "eth0",
+                  "valid_life_time": 4294967295,
+                  "preferred_life_time": 4294967295
+                }
+              ]
+            },
+            {
+              "ifindex": 5,
+              "ifname": "usb0",
+              "flags": ["NO-CARRIER", "BROADCAST", "MULTICAST", "UP"],
+              "mtu": 1500,
+              "qdisc": "pfifo_fast",
+              "operstate": "DOWN",
+              "group": "default",
+              "txqlen": 1000,
+              "addr_info": [
+                {
+                  "family": "inet",
+                  "local": "192.168.7.2",
+                  "prefixlen": 24,
+                  "broadcast": "192.168.7.255",
+                  "scope": "global",
+                  "label": "usb0",
+                  "valid_life_time": 4294967295,
+                  "preferred_life_time": 4294967295
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "network/interface/:interfaceName",
+      "methods": {
+        "GET": {
+          "desc": "Retrieves the current network interface configuration",
+          "output": {
+            "INTERFACE": "eth0",
+            "PROTO": "static",
+            "ADDRESS": "192.168.1.149",
+            "NETMASK": "255.255.255.0",
+            "GATEWAY": "192.168.1.1",
+            "status": "OK",
+            "CurrentAddress": "192.168.1.149",
+            "CurrentNetmask": "255.255.255.0"
+          }
+        },
+        "POST": {
+          "desc": "Updates the saved configuration but does not restart the network.",
+          "input": {
+            "INTERFACE": "eth0",
+            "PROTO": "static",
+            "ADDRESS": "192.168.1.149",
+            "NETMASK": "255.255.255.0",
+            "GATEWAY": "192.168.1.1"
+          },
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "network/interface/:interfaceName/apply",
+      "methods": {
+        "POST": {
+          "desc": "Applies the networking settings for the specified interface at the OS level and restarts the interface.",
+          "input": "NONE",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "network/persistentNames",
+      "methods": {
+        "DELETE": {
+          "desc": "Removes the Interface Persistent names",
+          "output": {
+            "status": "OK"
+          }
+        },
+        "POST": {
+          "desc": "Creates the Interface Persistent names.",
+          "output": {
+            "status": "OK",
+            "interfaceCnt": 2
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "network/wifi/scan/:interface",
+      "methods": {
+        "GET": {
+          "desc": "Returns information about wifi networks that can be discovered via the specified interface. (NOTE: It is possible a network without a SSID will be in the list.) ",
+          "output": {
+            "status": "OK",
+            "networks": [
+              {
+                "lastSeen": "0 ms ago",
+                "freq": 2437,
+                "signal": "-61.00 dBm",
+                "SSID": "Christmas"
+              },
+              {
+                "lastSeen": "16930 ms ago",
+                "freq": 2437,
+                "signal": "-68.00 dBm",
+                "SSID": "Christmas-Guest"
+              },
+              {
+                "lastSeen": "16930 ms ago",
+                "freq": 2412,
+                "signal": "-93.00 dBm",
+                "SSID": "MySpectrumWiFi48-2G"
+              },
+              {
+                "lastSeen": "0 ms ago",
+                "freq": 2437,
+                "signal": "-55.00 dBm"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "network/wifi_strength",
+      "methods": {
+        "GET": {
+          "desc": "DEPRECATED:Use network/wifi/strength",
+          "deprecated": true,
+          "output": [
+            {
+              "interface": "wlan0",
+              "link": 45,
+              "level": -65,
+              "noise": -256
+            },
+            {
+              "interface": "wlan1",
+              "link": 40,
+              "level": -60,
+              "noise": -256
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "network/wifi/strength",
+      "methods": {
+        "GET": {
+          "desc": "Returns detailed information about wireless network interfaces and their signal strength",
+          "output": [
+            {
+              "interface": "wlan0",
+              "link": 45,
+              "level": -65,
+              "noise": -256
+            },
+            {
+              "interface": "wlan1",
+              "link": 40,
+              "level": -60,
+              "noise": -256
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "playlists",
+      "methods": {
+        "GET": {
+          "desc": "Get list of playlist names",
+          "output": ["Playlist_1", "Playlist_2", "Playlist_3"]
+        },
+        "POST": {
+          "desc": "Insert a new playlist",
+          "input": {
+            "name": "UploadTest",
+            "mainPlaylist": [
+              {
+                "type": "pause",
+                "enabled": 1,
+                "playOnce": 0,
+                "duration": 8
+              }
+            ],
+            "playlistInfo": {
+              "total_duration": 8,
+              "total_items": 1
+            }
+          },
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/playable",
+      "methods": {
+        "GET": {
+          "desc": "Get list of playlist names and sequences that are playable",
+          "output": ["Playlist_1", "Playlist_2", "MySequence.fseq"]
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/validate",
+      "methods": {
+        "GET": {
+          "desc": "Returns a list of Playlist and any validation errors that are present",
+          "output": [
+            {
+              "name": "Delete_Media",
+              "description": "User entered playlist description",
+              "valid": false,
+              "message": ["Invalid Playlist Christmas Every Day.mp3"]
+            },
+            {
+              "name": "Delete_Sequence",
+              "description": "User entered playlist description",
+              "valid": false,
+              "message": [
+                "Invalid mediaName Christmas Every Day.mp3",
+                "Invalid Sequence Christmas Every Day_128.fseq"
+              ]
+            },
+            {
+              "name": "Delete_Sequence2",
+              "description": "User entered playlist description",
+              "valid": false,
+              "message": ["Invalid Sequence Christmas Every Day_128.fseq"]
+            },
+            {
+              "name": "Parent_delete_test",
+              "description": "User entered playlist description",
+              "valid": false,
+              "message": ["Invalid Playlist deleted_playlist"]
+            },
+            {
+              "name": "Test1",
+              "description": "User entered playlist description",
+              "valid": true,
+              "message": []
+            },
+            {
+              "name": "Test2",
+              "description": "User entered playlist description",
+              "valid": true,
+              "message": []
+            },
+            {
+              "name": "Test3",
+              "description": "User entered playlist description",
+              "valid": true,
+              "message": []
+            },
+            {
+              "name": "Test4",
+              "description": "User entered playlist description",
+              "valid": true,
+              "message": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/stop",
+      "methods": {
+        "GET": {
+          "desc": "Immediately stop the currently running playlist"
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/stopgracefully",
+      "methods": {
+        "GET": {
+          "desc": "Gracefully stop the currently running playlist"
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/stopgracefullyafterloop",
+      "methods": {
+        "GET": {
+          "desc": "Gracefully stop the currently running playlist after completion of the current loop"
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/pause",
+      "methods": {
+        "GET": {
+          "desc": "Pause the currently running playlist"
+        }
+      }
+    },
+    {
+      "endpoint": "playlists/resume",
+      "methods": {
+        "GET": {
+          "desc": "Resume a previously paused playlist"
+        }
+      }
+    },
+    {
+      "endpoint": "playlist/:PlaylistName",
+      "methods": {
+        "GET": {
+          "desc": "Get Playlist named :PlaylistName in FPP JSON format. If ?mergeSubs=1 is specified, then any sub playlist will be recursively merged into the parent playlist.",
+          "output": {
+            "name": "UploadTest",
+            "mainPlaylist": [
+              {
+                "type": "pause",
+                "enabled": 1,
+                "playOnce": 0,
+                "duration": 8
+              }
+            ],
+            "playlistInfo": {
+              "total_duration": 8,
+              "total_items": 1
+            }
+          }
+        },
+        "POST": {
+          "desc": "Update/Insert the Playlist named :PlaylistName.",
+          "input": {
+            "name": "UploadTest",
+            "mainPlaylist": [
+              {
+                "type": "pause",
+                "enabled": 1,
+                "playOnce": 0,
+                "duration": 8
+              }
+            ],
+            "playlistInfo": {
+              "total_duration": 8,
+              "total_items": 1
+            }
+          },
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        },
+        "DELETE": {
+          "desc": "Delete the Playlist named :PlaylistName.",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "playlist/:PlaylistName/start",
+      "methods": {
+        "GET": {
+          "desc": "Start the playlist named :PlaylistName."
+        }
+      }
+    },
+    {
+      "endpoint": "playlist/:PlaylistName/:SectionName/item",
+      "methods": {
+        "POST": {
+          "desc": "Insert an item into the :SectionName section of the playlist :PlaylistName",
+          "input": {
+            "type": "pause",
+            "enabled": 1,
+            "playOnce": 0,
+            "duration": 8
+          },
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "plugin",
+      "methods": {
+        "GET": {
+          "desc": "Get list of installed plugins",
+          "output": ["fpp-brightness", "fpp-matrixtools", "fpp-vastfmt"]
+        },
+        "POST": {
+          "desc": "Install a new plugin.  The data passed in is a pluginInfo JSON structure with branch and sha values added to the top level to indicate which branch and sha to install.",
+          "input": {
+            "repoName": "fpp-matrixtools",
+            "name": "MatrixTools",
+            "author": "Chris Pinkham (CaptainMurdoch)",
+            "description": "MatrixTools description here.",
+            "homeURL": "https://github.com/cpinkham/fpp-matrixtools",
+            "srcURL": "https://github.com/cpinkham/fpp-matrixtools.git",
+            "bugURL": "https://github.com/cpinkham/fpp-matrixtools/issues",
+            "branch": "master",
+            "sha": "",
+            "versions": [
+              {
+                "minFPPVersion": 0,
+                "maxFPPVersion": 0,
+                "branch": "master",
+                "sha": ""
+              }
+            ]
+          },
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "plugin/:PluginRepoName",
+      "methods": {
+        "GET": {
+          "desc": "Get pluginInfo.json for installed plugin PluginRepoName.  An additional 'updatesAvailable' field is added to indicate whether the plugin has any updates available that have been fetched but not merged.",
+          "output": {
+            "repoName": "fpp-matrixtools",
+            "name": "MatrixTools",
+            "author": "Chris Pinkham (CaptainMurdoch)",
+            "description": "MatrixTools description here.",
+            "homeURL": "https://github.com/cpinkham/fpp-matrixtools",
+            "srcURL": "https://github.com/cpinkham/fpp-matrixtools.git",
+            "bugURL": "https://github.com/cpinkham/fpp-matrixtools/issues",
+            "updatesAvailable": 0,
+            "versions": [
+              {
+                "minFPPVersion": 0,
+                "maxFPPVersion": 0,
+                "branch": "master",
+                "sha": ""
+              }
+            ]
+          }
+        },
+        "DELETE": {
+          "desc": "Uninstall plugin PluginRepoName",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "plugin/:RepoName/settings/:SettingName",
+      "methods": {
+        "GET": {
+          "desc": "Returns the value of a given setting from the Plugin specified as :RepoName",
+          "output": {
+            "status": "OK",
+            "SettingName": "SettingValue"
+          }
+        },
+        "POST": {
+          "desc": "Sets the Specified Setting for the plugin identified by RepoName and returns that same setting value",
+          "input": "SettingValue",
+          "output": {
+            "status": "OK",
+            "SettingName": "SettingValue"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "plugin/:PluginRepoName/updates",
+      "methods": {
+        "POST": {
+          "desc": "Check plugin PluginRepoName for available updates.  this works by running a 'git fetch' in the plugin directory and checking for any non-merged updates.",
+          "output": {
+            "Status": "OK",
+            "Message": "",
+            "updatesAvailable": 1
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "plugin/:PluginRepoName/upgrade",
+      "methods": {
+        "POST": {
+          "desc": "Pull in git updates for plugin PluginRepoName",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "proxies",
+      "methods": {
+        "GET": {
+          "desc": "Returns the list of IP addresses that this FPP instance can proxy",
+          "output": [
+            {
+              "host": "192.168.1.2",
+              "description": "Mega Tree"
+            },
+            {
+              "host": "192.168.1.146",
+              "description": "Yard"
+            },
+            {
+              "host": "192.168.1.148",
+              "description": "Left House"
+            }
+          ]
+        },
+        "POST": {
+          "desc": "Post a list of IP addresses that this FPP instance can proxy",
+          "output": [
+            {
+              "host": "192.168.1.2",
+              "description": "Mega Tree"
+            },
+            {
+              "host": "192.168.1.146",
+              "description": "Yard"
+            },
+            {
+              "host": "192.168.1.148",
+              "description": "Left House"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "proxies/:ProxyIp",
+      "methods": {
+        "POST": {
+          "desc": "Add an IP address to this FPP instance can proxy",
+          "output": [
+            {
+              "host": "192.168.1.2",
+              "description": "Mega Tree"
+            }
+          ]
+        },
+        "DELETE": {
+          "desc": "Delete an IP address from FPP proxy list",
+          "output": []
+        }
+      }
+    },
+    {
+      "endpoint": "proxy/:IP/:PATH",
+      "methods": {
+        "GET": {
+          "desc": "Get the contents of a remote URL at http://:IP/:PATH"
+        }
+      }
+    },
+    {
+      "endpoint": "scripts",
+      "methods": {
+        "GET": {
+          "desc": "Return a list of currently installed scripts",
+          "output": ["script1.sh", "script2.sh"]
+        }
+      }
+    },
+    {
+      "endpoint": "scripts/installRemote/:category/:filename",
+      "methods": {
+        "GET": {
+          "desc": "Install a remote script from the script repository",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "scripts/viewRemote/:category/:filename",
+      "methods": {
+        "GET": {
+          "desc": "View the source code of a remote script",
+          "output": "The content of the script as a string"
+        }
+      }
+    },
+    {
+      "endpoint": "scripts/:scriptName",
+      "methods": {
+        "GET": {
+          "desc": "View the source code of an already installed script",
+          "output": "The content of the script as a string"
+        },
+        "POST": {
+          "desc": "Takes the body of the POST requests and writes it to the file specified by :scriptName",
+          "output": {
+            "status": "OK",
+            "scriptName": "test.py",
+            "scriptBody": "#!/usr/bin/python\n\nprint(\"hi There Matt!\");\n"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "scripts/:scriptName/run",
+      "methods": {
+        "GET": {
+          "desc": "Run a locally installed Script",
+          "output": "The output of the script as a String"
+        }
+      }
+    },
+    {
+      "endpoint": "sequence",
+      "methods": {
+        "GET": {
+          "desc": "Get a list of all FSEQ files",
+          "output": ["GreatestShow", "StPatricksDay", "Valentine"]
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/current/step",
+      "methods": {
+        "GET": {
+          "desc": "If the sequence was paused by sequence/current/togglePause, then will step the sequence forward one frame",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/current/stepBack",
+      "methods": {
+        "GET": {
+          "desc": "If the sequence was paused by sequence/current/togglePause, then will step the sequence backward one frame",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/current/stop",
+      "methods": {
+        "GET": {
+          "desc": "Stops the current playing sequence. Only valid if sequence started by /api/sequence/:SequenceName/start/:startSecond",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/current/togglePause",
+      "methods": {
+        "GET": {
+          "desc": "Pauses or Resumes the current playing sequence. Only valid if sequence started by /api/sequence/:SequenceName/start/:startSecond",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/:SequenceName",
+      "methods": {
+        "GET": {
+          "desc": "Get the FSEQ file for the named sequence",
+          "output": "(Raw FSEQ file data)"
+        },
+        "POST": {
+          "desc": "Upload a new FSEQ file",
+          "input": "(Raw FSEQ file data)",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        },
+        "DELETE": {
+          "desc": "Delete the named FSEQ file",
+          "output": {
+            "Status": "OK",
+            "Message": ""
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/:SequenceName/meta",
+      "methods": {
+        "GET": {
+          "desc": "Get metadata from the FSEQ file for the named sequence",
+          "output": {
+            "Name": "GreatestShow.fseq",
+            "Version": "2.0",
+            "ID": "1553194098754908",
+            "StepTime": 25,
+            "NumFrames": 10750,
+            "MaxChannel": 84992,
+            "ChannelCount": 84992
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "sequence/:SequenceName/start/:startSecond",
+      "methods": {
+        "GET": {
+          "desc": "Starts the given sequence at the specified time frame. Only intended for testing. In most situations, it is best to use \"Start Playlist\" from the command API and pass the sequence name as the playlist name.",
+          "output": {
+            "status": "OK",
+            "SequenceName": "single_line.fseq",
+            "startSecond": "9"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "settings",
+      "methods": {
+        "GET": {
+          "desc": "Get JSON list of settings",
+          "output": {
+            "settingGroups": {
+              "BBBLeds": {
+                "description": "BeagleBone LEDs",
+                "platforms": ["BeagleBone Black"],
+                "settings": [
+                  "BBBLeds0",
+                  "BBBLeds1",
+                  "BBBLeds2",
+                  "BBBLeds3",
+                  "BBBLedPWR"
+                ]
+              }
+            },
+            "settings": {
+              "alwaysTransmit": {
+                "name": "alwaysTransmit",
+                "description": "Always transmit channel data",
+                "tip": "Always transmit channel output data",
+                "level": 1,
+                "fppModes": ["master", "player", "remote"],
+                "restart": 2,
+                "reboot": 0,
+                "checkedValue": "1",
+                "uncheckedValue": "0",
+                "default": "0",
+                "type": "checkbox"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "settings/:SettingName",
+      "methods": {
+        "GET": {
+          "desc": "Get info about a for a particular setting include the value.",
+          "output": {
+            "name": "AudioFormat",
+            "description": "Audio Output Format",
+            "tip": "The Audio Format generated by the decoder ",
+            "level": 1,
+            "restart": 2,
+            "default": 0,
+            "type": "select",
+            "options": {
+              "Default": 0,
+              "44100/S16": 1,
+              "44100/S32": 2,
+              "44100/FLT": 3,
+              "48000/S16": 4,
+              "48000/S32": 5,
+              "48000/FLT": 6,
+              "96000/S16": 7,
+              "96000/S32": 8,
+              "96000/FLT": 9
+            },
+            "value": "0"
+          }
+        },
+        "PUT": {
+          "desc": "Sets the value for a specific setting",
+          "input": "0",
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "settings/:SettingName/options",
+      "methods": {
+        "GET": {
+          "desc": "Get array of options for a particular setting.  This is currently only valid for options requiring a list of valid items and only for some of those which are used in the settings and playlist User Interfaces.",
+          "output": {
+            "HDMI": "HDMI",
+            "Disabled": "Disabled",
+            "Matrix": "Matrix"
+          }
+        }
+      }
+    },
+    {
+      "endpoint": "statistics/usage",
+      "methods": {
+        "GET": {
+          "desc": "Returns the statistics file that will be shared with the development team if sharing statistics is enabled.  Generally a cached file is returned, but if ?force=1 is sent then it will be regenerated.",
+          "output": {
+            "uuid": "6ba176e7-da7f-49f4-8b27-edb5bd9ff616",
+            "systemInfo": {
+              "mqtt": {
+                "configured": true,
+                "connected": true
+              },
+              "fppdStatus": "running",
+              "fppdMode": "player",
+              "fppdUptimeSeconds": 3436,
+              "wifiInterfaceCount": 0,
+              "platform": "Debian",
+              "platformVariant": "Debian",
+              "version": "4.x-master-914-gebda8520",
+              "majorVersion": 4,
+              "minorVersion": 1000,
+              "typeId": 1,
+              "branch": "master",
+              "osVersion": "v3.0",
+              "Kernel": "4.19.0-6-amd64",
+              "osRelease": "Debian GNU/Linux 10 (buster)",
+              "channelRanges": "0-103",
+              "utilization": {
+                "CPU": 2.2251743606775136,
+                "Memory": 15.913906294147957,
+                "Uptime": "7 days"
+              }
+            },
+            "capeInfo": {
+              "type": "None"
+            },
+            "outputProcessors": {
+              "Brightness": {
+                "activeCnt": 0,
+                "totalCnt": 2
+              }
+            },
+            "files": {
+              "sequences": {
+                "cnt": 2,
+                "bytes": 19025632
+              },
+              "effects": {
+                "cnt": 0,
+                "bytes": 0
+              },
+              "music": {
+                "cnt": 4,
+                "bytes": 20202892
+              },
+              "videos": {
+                "cnt": 3,
+                "bytes": 2270154
+              }
+            },
+            "models": {
+              "count": 0
+            },
+            "multisync": [
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-103",
+                "lastSeen": 1613355417,
+                "version": "4.x-master-914-gebda8520",
+                "majorVersion": 4,
+                "minorVersion": 1000,
+                "type": "FPP (Debian GNU/Linux)",
+                "typeId": 1
+              },
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-79383",
+                "lastSeen": 1613355416,
+                "version": "4.1",
+                "majorVersion": 4,
+                "minorVersion": 1,
+                "type": "Raspberry Pi 3 B",
+                "typeId": 8
+              },
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-1199",
+                "lastSeen": 1613355416,
+                "version": "4.x-master-918-g08c8dd19",
+                "majorVersion": 4,
+                "minorVersion": 1000,
+                "type": "BeagleBone Black",
+                "typeId": 65
+              },
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-7",
+                "lastSeen": 1613355416,
+                "version": "4.x-master-1015-g93555273",
+                "majorVersion": 4,
+                "minorVersion": 1000,
+                "type": "Raspberry Pi 3 B",
+                "typeId": 8
+              },
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-9215",
+                "lastSeen": 1613355416,
+                "version": "4.x-master-782-gcf3d3381",
+                "majorVersion": 4,
+                "minorVersion": 1000,
+                "type": "BeagleBone Black",
+                "typeId": 65
+              },
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-7",
+                "lastSeen": 1613355417,
+                "version": "4.x-master-1015-g93555273",
+                "majorVersion": 4,
+                "minorVersion": 1000,
+                "type": "FPP (unknown hardware)",
+                "typeId": 1
+              },
+              {
+                "fppModeString": "player",
+                "channelRanges": "0-79383",
+                "lastSeen": 1613355417,
+                "version": "4.1",
+                "majorVersion": 4,
+                "minorVersion": 1,
+                "type": "FPP (unknown hardware)",
+                "typeId": 1
+              }
+            ],
+            "plugins": {
+              "fpp-brightness": {
+                "hash": "72b6b1465fe03ad681bd9854cc0ee72940f4a514",
+                "commitDate": "Tue Jan 12 20:49:11 2021 -0800"
+              },
+              "TwilioControl": {
+                "hash": "5d6533e25b8e56db511ed6fa0355763d8f94e2c3",
+                "commitDate": "Fri Jul 17 12:27:32 2020 -0400"
+              }
+            },
+            "schedule": {
+              "enabled": 1,
+              "types": {
+                "playlist": 3,
+                "command": 2
+              }
+            },
+            "settings": {
+              "AudioMixerDevice": "Master",
+              "AudioOutput": "0",
+              "BridgeInputDelayBeforeBlack": "5",
+              "masqUIPlatform": "",
+              "uiLevel": "3",
+              "verbosePlaylistItemDetails": "0"
+            }
+          }
+        },
+        "DELETE": {
+          "desc": "Deletes the cached statistics file",
+          "output": {
+            "status": "OK"
+          }
+        },
+        "POST": {
+          "desc": "Transmits the statistics to the remote server",
+          "output": {
+            "status": "OK",
+            "uuid": "M2-xxxxxxxx-f67f-930d-56ee-7xxxxxxxxxx"
+          }
+        }
+      }
+    },
+
+    {
+      "endpoint": "testmode",
+      "methods": {
+        "GET": {
+          "desc": "Returns information about the current state of the Test Mode for this instance",
+          "output": {
+            "mode": "RGBChase",
+            "subMode": "RGBChase-RGB",
+            "cycleMS": 1000,
+            "colorPattern": "FF000000FF000000FF",
+            "enabled": 1,
+            "channelSet": "1-520",
+            "channelSetType": "channelRange"
+          }
+        },
+        "POST": {
+          "desc": "Sets the current Testing model on this instance",
+          "input": {
+            "mode": "RGBChase",
+            "subMode": "RGBChase-RGB",
+            "cycleMS": 1000,
+            "colorPattern": "FF000000FF000000FF",
+            "enabled": 1,
+            "channelSet": "1-520",
+            "channelSetType": "channelRange"
+          },
+          "output": {
+            "status": "OK"
+          }
+        }
+      }
+    }
+  ]
+}

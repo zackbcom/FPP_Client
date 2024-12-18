@@ -18,7 +18,6 @@ __all__ = [
     "FPPConnectionError",
     "FPPConnectionTimeoutError",
     "FPPError",
-    "FPPReleases",
     "FPPUnsupportedVersionError",
     "FPPUpgradeError",
     "SystemStatus",

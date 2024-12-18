@@ -12,15 +12,15 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 description = "Asynchronous Python client for FPP."
-documentation = "https://github.com/zackbcom/fpp-client"
-homepage = "https://github.com/zackbcom/fpp-client"
+documentation = "https://github.com/zackbcom/fppclient"
+homepage = "https://github.com/zackbcom/fppclient"
 keywords = ["fpp", "api", "async", "client"]
 license = "MIT"
 maintainers = ["Zack Baldwin <zack@zackb.com>"]
-name = "fpp-client"
-packages = [{ include = "fpp", from = "src" }]
+name = "fppclient"
+packages = [{ include = "fppclient", from = "src" }]
 readme = "README.md"
-repository = "https://github.com/zackbcom/fpp-client"
+repository = "https://github.com/zackbcom/fppclient"
 version = "0.0.0"
 
 [tool.poetry.dependencies]
@@ -39,11 +39,11 @@ zeroconf = { version = "^0.136.0", optional = true, extras = ["all"] }
 cli = ["typer", "zeroconf"]
 
 [tool.poetry.scripts]
-fpp = "fpp.cli:cli"
+fpp = "fppclient.cli:cli"
 
 [tool.poetry.urls]
-"Bug Tracker" = "https://github.com/zackbcom/fpp-client/issues"
-Changelog = "https://github.com/zackbcom/fpp-client/releases"
+"Bug Tracker" = "https://github.com/zackbcom/fppclient/issues"
+Changelog = "https://github.com/zackbcom/fppclient/releases"
 
 [tool.poetry.dev-dependencies]
 aresponses = "3.0.0"
@@ -64,12 +64,12 @@ yamllint = "1.35.1"
 
 [tool.coverage.run]
 plugins = ["covdefaults"]
-source = ["fpp"]
+source = ["fppclient"]
 
 [tool.coverage.report]
 fail_under = 25
 show_missing = true
-omit = ["src/fpp/cli/*"]
+omit = ["src/fppclient/cli/*"]
 
 [tool.mypy]
 # Specify the target platform details in config, so your developers are
@@ -131,6 +131,7 @@ ignored-modules = ["orjson"]
 [tool.pytest.ini_options]
 addopts = "--cov"
 asyncio_mode = "auto"
+pythonpath = "project"
 
 [tool.ruff.lint]
 ignore = [
@@ -150,14 +151,14 @@ select = ["ALL"]
 
 [tool.ruff.lint.per-file-ignores]
 # Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
-"src/fpp/models.py" = ["N815"]
+"src/fppclient/models.py" = ["N815"]
 
 [tool.ruff.lint.flake8-pytest-style]
 fixture-parentheses = false
 mark-parentheses = false
 
 [tool.ruff.lint.isort]
-known-first-party = ["fpp"]
+known-first-party = ["fppclient"]
 
 [tool.ruff.lint.flake8-type-checking]
 runtime-evaluated-base-classes = [

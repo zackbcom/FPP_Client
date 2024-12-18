@@ -6,8 +6,8 @@ import aiohttp
 import pytest
 from aresponses import Response, ResponsesMockServer
 
-from fpp import FPP
-from fpp.exceptions import FPPConnectionError, FPPError
+from fppclient import FPP
+from fppclient.exceptions import FPPConnectionError, FPPError
 
 
 @pytest.mark.asyncio

@@ -1,5 +1,5 @@
 {
-  "name": "fpp",
+  "name": "fppclient",
   "version": "0.0.0",
   "private": true,
   "description": "Asynchronous Python client for FPP",
