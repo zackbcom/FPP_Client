@@ -1,0 +1,265 @@
+{
+    "endpoints": [
+      {
+        "endpoint": "system/fppd/restart",
+        "methods": {
+          "GET": {
+            "desc": "Restarts the fppd process. Can also pass ?quick=1 to reload some configuration without full restart",
+            "output": {
+              "status": "OK"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/fppd/start",
+        "methods": {
+          "GET": {
+            "desc": "Starts the fppd process (if it isn't already running)",
+            "output": {
+              "status": "OK"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/fppd/stop",
+        "methods": {
+          "GET": {
+            "desc": "Stops the fppd process if it is running",
+            "output": {
+              "status": "OK"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/reboot",
+        "methods": {
+          "GET": {
+            "desc": "Results in reboot of the operating system",
+            "output": {
+              "status": "OK"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/shutdown",
+        "methods": {
+          "GET": {
+            "desc": "Execute a clean shutdown of the Linux operating system.",
+            "output": {
+              "status": "OK"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/info",
+        "methods": {
+          "GET": {
+            "desc": "Returns basic information about the system.",
+            "output": {
+              "HostName": "FPPPi",
+              "HostDescription": "",
+              "Platform": "Raspberry Pi",
+              "Variant": "Pi 4",
+              "Mode": "player",
+              "Version": "6.0",
+              "Branch": "master",
+              "OSVersion": "v2022-02",
+              "OSRelease": "Raspbian GNU/Linux 11 (bullseye)",
+              "channelRanges": "1545-84479",
+              "majorVersion": 6,
+              "minorVersion": 1000,
+              "typeId": 13,
+              "uuid": "M1-10000000AAAAAAA",
+              "Utilization": {
+                "CPU": 0.11971951428083116,
+                "Memory": 1.955242609664765,
+                "Uptime": "11 days"
+              },
+              "Kernel": "5.10.92-v7l+",
+              "LocalGitVersion": "b998f65",
+              "RemoteGitVersion": "ed62c12",
+              "UpgradeSource": "github.com",
+              "IPs": ["192.168.3.84"]
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/status",
+        "methods": {
+          "GET": {
+            "desc": "Gives a fppd, network, current playlist, schedule, utilization, host, version, and mqtt information.  Can also pass an optional array of ip addresses like &ip[]=192.168.0.1&ip[]=192.168.0.2 to get information on a remote.",
+            "output": {
+              "MQTT": {
+                "configured": true,
+                "connected": true
+              },
+              "current_playlist": {
+                "count": "4",
+                "description": "Full Test 1",
+                "index": "2",
+                "playlist": "Test1",
+                "type": "pause"
+              },
+              "current_sequence": "",
+              "current_song": "",
+              "fppd": "running",
+              "mode": 2,
+              "mode_name": "player",
+              "next_playlist": {
+                "playlist": "Test3",
+                "start_time": "Sun @ 17:00:00 - (Everyday)"
+              },
+              "repeat_mode": 1,
+              "scheduler": {
+                "currentPlaylist": {
+                  "actualEndTime": 1613365200,
+                  "actualEndTimeStr": "Mon @ 00:00:00",
+                  "actualStartTime": 1613314804,
+                  "actualStartTimeStr": "Sun @ 10:00:04",
+                  "currentTime": 1613314842,
+                  "currentTimeStr": "Wed @ 19:00:00",
+                  "playlistName": "Test1",
+                  "scheduledEndTime": 1613365200,
+                  "scheduledEndTimeStr": "Mon @ 00:00:00",
+                  "scheduledStartTime": 1613278800,
+                  "scheduledStartTimeStr": "Sun @ 00:00:00",
+                  "secondsRemaining": 50358,
+                  "stopType": 0,
+                  "stopTypeStr": "Graceful"
+                },
+                "enabled": 1,
+                "nextPlaylist": {
+                  "playlistName": "Test3",
+                  "scheduledStartTime": 0,
+                  "scheduledStartTimeStr": "Sun @ 17:00:00 - (Everyday)"
+                },
+                "status": "playing"
+              },
+              "seconds_elapsed": "5",
+              "seconds_played": "5",
+              "seconds_remaining": "7",
+              "status": 1,
+              "status_name": "playing",
+              "time": "Sun Feb 14 10:00:42 EST 2021",
+              "time_elapsed": "00:05",
+              "time_remaining": "00:07",
+              "uptime": "00:38",
+              "uptimeDays": 0.0004398148148148148,
+              "uptimeHours": 0.010555555555555556,
+              "uptimeMinutes": 0.6333333333333333,
+              "uptimeSeconds": 38,
+              "uptimeStr": "0 days, 0 hours, 0 minutes, 38 seconds",
+              "uptimeTotalSeconds": 38,
+              "volume": 70,
+              "wifi": [],
+              "interfaces": [
+                {
+                  "ifindex": 1,
+                  "ifname": "lo",
+                  "flags": ["LOOPBACK", "UP", "LOWER_UP"],
+                  "mtu": 65536,
+                  "qdisc": "noqueue",
+                  "operstate": "UNKNOWN",
+                  "group": "default",
+                  "txqlen": 1000,
+                  "addr_info": [
+                    {
+                      "family": "inet",
+                      "local": "127.0.0.1",
+                      "prefixlen": 8,
+                      "scope": "host",
+                      "label": "lo",
+                      "valid_life_time": 4294967295,
+                      "preferred_life_time": 4294967295
+                    }
+                  ]
+                },
+                {
+                  "ifindex": 2,
+                  "ifname": "eth0",
+                  "flags": [
+                    "BROADCAST",
+                    "MULTICAST",
+                    "DYNAMIC",
+                    "UP",
+                    "LOWER_UP"
+                  ],
+                  "mtu": 1500,
+                  "qdisc": "mq",
+                  "operstate": "UP",
+                  "group": "default",
+                  "txqlen": 1000,
+                  "addr_info": [
+                    {
+                      "family": "inet",
+                      "local": "192.168.1.149",
+                      "prefixlen": 24,
+                      "broadcast": "192.168.1.255",
+                      "scope": "global",
+                      "dynamic": true,
+                      "label": "eth0",
+                      "valid_life_time": 7096,
+                      "preferred_life_time": 7096
+                    }
+                  ]
+                }
+              ],
+              "advancedView": {
+                "HostName": "FPPdev",
+                "HostDescription": "",
+                "Platform": "Debian",
+                "Variant": "Debian",
+                "Mode": "player",
+                "Version": "4.x-master-914-gebda8520",
+                "Branch": "master",
+                "OSVersion": "v3.0",
+                "OSRelease": "Debian GNU/Linux 10 (buster)",
+                "channelRanges": "0-103",
+                "majorVersion": 4,
+                "minorVersion": 1000,
+                "typeId": 1,
+                "Utilization": {
+                  "CPU": 1.8711392041373358,
+                  "Memory": 16.75084348563166,
+                  "Uptime": "6 days"
+                },
+                "Kernel": "4.19.0-6-amd64",
+                "LocalGitVersion": "6e043d6",
+                "RemoteGitVersion": "6e043d6",
+                "UpgradeSource": "github.com",
+                "IPs": ["192.168.1.149"]
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "system/volume",
+        "methods": {
+          "GET": {
+            "desc": "Returns the Current volume if FPPD is running or the Volume Setting if not",
+            "output": {
+              "status": "OK",
+              "method": "FPPD",
+              "volume": 70
+            }
+          },
+          "POST": {
+            "desc": "Sets the volume.  The volume should be passed as a JSON message.",
+            "input": {
+              "volume": 34
+            },
+            "output": {
+              "status": "OK"
+            }
+          }
+        }
+      }
+    ]
+  }

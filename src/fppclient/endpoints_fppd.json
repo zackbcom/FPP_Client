@@ -1,0 +1,562 @@
+{
+    "endpoints": [
+      {
+        "endpoint": "fppd/e131stats",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the current e131/DDP/ArtNet input statistics",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "respCode": 200,
+              "universes": [
+                {
+                  "bytesReceived": "0",
+                  "errors": "0",
+                  "id": 1,
+                  "packetsReceived": "0",
+                  "startChannel": 1
+                },
+                {
+                  "bytesReceived": "0",
+                  "errors": "0",
+                  "id": 2,
+                  "packetsReceived": "0",
+                  "startChannel": 513
+                }
+              ]
+            }
+          },
+          "DELETE": {
+            "desc": "Clear the e131/DDP/ArtNet input statistics",
+            "output": {
+              "Message": "Stats Cleared",
+              "Status": "OK",
+              "respCode": 200
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/effects",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets a list of effects",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "respCode": 200,
+              "runningEffects": [
+                {
+                  "id": 0,
+                  "name": "block_driveways"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/log",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the current log for each log instance",
+            "output": {
+              "log": {
+                "ChannelData": "warn",
+                "ChannelOut": "warn",
+                "Command": "info",
+                "Control": "warn",
+                "E131Bridge": "warn",
+                "Effect": "warn",
+                "Event": "warn",
+                "GPIO": "warn",
+                "General": "warn",
+                "HTTP": "warn",
+                "MediaOut": "warn",
+                "Playlist": "debug",
+                "Plugin": "warn",
+                "Schedule": "warn",
+                "Sequence": "warn",
+                "Settings": "warn",
+                "Sync": "warn"
+              },
+              "Status": "OK",
+              "Message": "",
+              "respCode": 200
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/multiSyncStats",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Returns status about Multisync instances",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "masterHostname": "",
+              "masterIP": "",
+              "respCode": 200,
+              "systems": [
+                {
+                  "hostname": "",
+                  "lastReceiveTime": "2021-02-13 09:54:02",
+                  "pktBlank": 0,
+                  "pktCommand": 0,
+                  "pktError": 0,
+                  "pktFPPCommand": 0,
+                  "pktPing": 1,
+                  "pktPlugin": 0,
+                  "pktSyncMedOpen": 0,
+                  "pktSyncMedStart": 0,
+                  "pktSyncMedStop": 0,
+                  "pktSyncMedSync": 0,
+                  "pktSyncSeqOpen": 0,
+                  "pktSyncSeqStart": 0,
+                  "pktSyncSeqStop": 0,
+                  "pktSyncSeqSync": 0,
+                  "sourceIP": "192.168.1.145"
+                },
+                {
+                  "hostname": "",
+                  "lastReceiveTime": "2021-02-13 09:54:02",
+                  "pktBlank": 0,
+                  "pktCommand": 0,
+                  "pktError": 0,
+                  "pktFPPCommand": 0,
+                  "pktPing": 1,
+                  "pktPlugin": 0,
+                  "pktSyncMedOpen": 0,
+                  "pktSyncMedStart": 0,
+                  "pktSyncMedStop": 0,
+                  "pktSyncMedSync": 0,
+                  "pktSyncSeqOpen": 0,
+                  "pktSyncSeqStart": 0,
+                  "pktSyncSeqStop": 0,
+                  "pktSyncSeqSync": 0,
+                  "sourceIP": "192.168.1.150"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/multiSyncSystems",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the list of known FPP instances",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "respCode": 200,
+              "systems": [
+                {
+                  "address": "192.168.1.10",
+                  "channelRanges": "0-7712",
+                  "fppMode": 2,
+                  "fppModeString": "player",
+                  "hostname": "roof",
+                  "lastSeen": 1584566432,
+                  "lastSeenStr": "2020-03-18 14:20:32",
+                  "majorVersion": 4,
+                  "minorVersion": 1000,
+                  "model": "TI AM335x BeagleBone Green",
+                  "type": "BeagleBone Black",
+                  "version": "4.x-master-186-g58f6a91-dirty"
+                },
+                {
+                  "address": "192.168.1.150",
+                  "channelRanges": "0-79383",
+                  "fppMode": 2,
+                  "fppModeString": "player",
+                  "hostname": "FPPDev",
+                  "lastSeen": 1613227416,
+                  "lastSeenStr": "2021-02-13 09:43:36",
+                  "local": 0,
+                  "majorVersion": 4,
+                  "minorVersion": 1,
+                  "model": "Pi 3 Model B",
+                  "multiSyncCapable": 0,
+                  "type": "FPP (unknown hardware)",
+                  "typeId": 1,
+                  "version": "4.1"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/ports",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Returns the list of Ports with current sensing.",
+            "output": [
+              {
+                "col": 1,
+                "enabled": true,
+                "ma": 58,
+                "name": "Port #1",
+                "pixelCount": 150,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 2,
+                "enabled": true,
+                "ma": 258,
+                "name": "Port #2",
+                "pixelCount": 200,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 3,
+                "enabled": true,
+                "ma": 0,
+                "name": "Port #3",
+                "pixelCount": 0,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 4,
+                "enabled": true,
+                "ma": 0,
+                "name": "Port #4",
+                "pixelCount": 0,
+                "row": 1,
+                "status": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/ports/pixelCount",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Same as fppd/ports, but has the side effect of triggering a pixel Count",
+            "output": [
+              {
+                "col": 1,
+                "enabled": true,
+                "ma": 58,
+                "name": "Port #1",
+                "pixelCount": 150,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 2,
+                "enabled": true,
+                "ma": 258,
+                "name": "Port #2",
+                "pixelCount": 200,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 3,
+                "enabled": true,
+                "ma": 0,
+                "name": "Port #3",
+                "pixelCount": 0,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 4,
+                "enabled": true,
+                "ma": 0,
+                "name": "Port #4",
+                "pixelCount": 0,
+                "row": 1,
+                "status": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/ports/stop",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Same as fppd/ports, but has the side effect of stopping the Pixel count in progress",
+            "output": [
+              {
+                "col": 1,
+                "enabled": true,
+                "ma": 58,
+                "name": "Port #1",
+                "pixelCount": 150,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 2,
+                "enabled": true,
+                "ma": 258,
+                "name": "Port #2",
+                "pixelCount": 200,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 3,
+                "enabled": true,
+                "ma": 0,
+                "name": "Port #3",
+                "pixelCount": 0,
+                "row": 1,
+                "status": true
+              },
+              {
+                "col": 4,
+                "enabled": true,
+                "ma": 0,
+                "name": "Port #4",
+                "pixelCount": 0,
+                "row": 1,
+                "status": true
+              }
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/schedule",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Returns a projection of Playlists and other events that are scheduled to start in the near future.",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "respCode": 200,
+              "schedule": {
+                "enabled": 1,
+                "entries": [
+                  {
+                    "day": 7,
+                    "dayStr": "Everyday",
+                    "enabled": 1,
+                    "endDate": "2026-12-31",
+                    "endTime": "18:00:00",
+                    "id": 0,
+                    "playlist": "Test3",
+                    "repeat": 1,
+                    "repeatInterval": 0,
+                    "startDate": "2019-01-01",
+                    "startTime": "17:00:00",
+                    "stopType": 0,
+                    "stopTypeStr": "Graceful",
+                    "type": "playlist"
+                  },
+                  {
+                    "args": [],
+                    "command": "Effects Stop",
+                    "day": 7,
+                    "dayStr": "Everyday",
+                    "enabled": 1,
+                    "endDate": "2026-12-31",
+                    "endTime": "24:00:00",
+                    "id": 3,
+                    "multisyncCommand": true,
+                    "multisyncHosts": "192.168.1.149",
+                    "playlist": "",
+                    "repeat": 1,
+                    "repeatInterval": 0,
+                    "startDate": "2019-01-01",
+                    "startTime": "00:00:00",
+                    "stopType": 0,
+                    "stopTypeStr": "Graceful",
+                    "type": "command"
+                  },
+                  {
+                    "args": ["/test", "\"hi\""],
+                    "command": "MQTT",
+                    "day": 7,
+                    "dayStr": "Everyday",
+                    "enabled": 1,
+                    "endDate": "2026-12-31",
+                    "endTime": "24:00:00",
+                    "id": 4,
+                    "multisyncCommand": false,
+                    "multisyncHosts": "",
+                    "playlist": "",
+                    "repeat": 1,
+                    "repeatInterval": 0,
+                    "startDate": "2019-01-01",
+                    "startTime": "00:00:00",
+                    "stopType": 0,
+                    "stopTypeStr": "Graceful",
+                    "type": "command"
+                  },
+                  {
+                    "args": ["Test2", "true", "false"],
+                    "command": "Start Playlist",
+                    "endTime": 1613365200,
+                    "endTimeStr": "Mon @ 00:00:00",
+                    "id": 1,
+                    "multisyncCommand": false,
+                    "multisyncHosts": "",
+                    "priority": 1,
+                    "startTime": 1613353500,
+                    "startTimeStr": "Sun @ 20:45:00"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/status",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the current status of the FPPD daemon",
+            "output": {
+              "MQTT": {
+                "configured": true,
+                "connected": true
+              },
+              "bridging": false,
+              "current_playlist": {
+                "count": "1",
+                "description": "Idle 30 seconds",
+                "index": "1",
+                "playlist": "Idle30",
+                "type": "pause"
+              },
+              "current_sequence": "",
+              "current_song": "",
+              "dateStr": "Sat Feb 26",
+              "fppd": "running",
+              "mode": 2,
+              "mode_name": "player",
+              "multisync": false,
+              "next_playlist": {
+                "playlist": "Idle30",
+                "start_time": "Sun Feb 27 @ 12:00 AM - (Everyday)"
+              },
+              "repeat_mode": 1,
+              "scheduler": {
+                "currentPlaylist": {
+                  "actualEndTime": 1645938000,
+                  "actualEndTimeStr": "Sun Feb 27 @ 12:00 AM",
+                  "actualStartTime": 1645911479,
+                  "actualStartTimeStr": "Sat Feb 26 @ 04:37 PM",
+                  "currentTime": 1645911483,
+                  "currentTimeStr": "Wed Dec 31 @ 07:00 PM",
+                  "playlistName": "Idle30",
+                  "scheduledEndTime": 1645938000,
+                  "scheduledEndTimeStr": "Sun Feb 27 @ 12:00 AM",
+                  "scheduledStartTime": 1645851600,
+                  "scheduledStartTimeStr": "Sat Feb 26 @ 12:00 AM",
+                  "secondsRemaining": 26517,
+                  "stopType": 0,
+                  "stopTypeStr": "Graceful"
+                },
+                "enabled": 1,
+                "nextPlaylist": {
+                  "playlistName": "Idle30",
+                  "scheduledStartTime": 0,
+                  "scheduledStartTimeStr": "Sun Feb 27 @ 12:00 AM - (Everyday)"
+                },
+                "status": "playing"
+              },
+              "seconds_elapsed": "5",
+              "seconds_played": "5",
+              "seconds_remaining": "25",
+              "status": 1,
+              "status_name": "playing",
+              "time": "Sat Feb 26 16:38:03 EST 2022",
+              "timeStr": "04:38 PM",
+              "timeStrFull": "04:38:03 PM",
+              "time_elapsed": "00:05",
+              "time_remaining": "00:25",
+              "uptime": "00:04",
+              "uptimeDays": 4.6296296296296294e-5,
+              "uptimeHours": 0.0011111111111111111,
+              "uptimeMinutes": 0.066666666666666666,
+              "uptimeSeconds": 4,
+              "uptimeStr": "0 days, 0 hours, 0 minutes, 4 seconds",
+              "uptimeTotalSeconds": 4,
+              "uuid": "M2-4c928e82-f67f-930d-56ee-7f883e62591b",
+              "volume": 70
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/testing",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the current test mode configuration",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "respCode": 200,
+              "config": {
+                "enabled": 1,
+                "channelSet": "1-8392704",
+                "channelSetType": "channelRange",
+                "colorPattern": "FF000000FF000000FF",
+                "cycleMS": 1000,
+                "mode": "RGBChase",
+                "subMode": "RGBChase-RGB"
+              }
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/version",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the current FPP version",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "branch": "master",
+              "fppdAPI": "v1",
+              "majorVersion": "4",
+              "minorVersion": "1000",
+              "respCode": 200,
+              "version": "4.x-master-904-ga13db6aa"
+            }
+          }
+        }
+      },
+      {
+        "endpoint": "fppd/volume",
+        "fppd": true,
+        "methods": {
+          "GET": {
+            "desc": "Gets the current output volume",
+            "output": {
+              "Message": "",
+              "Status": "OK",
+              "respCode": 200,
+              "volume": 70
+            }
+          }
+        }
+      }
+    ]
+  }
