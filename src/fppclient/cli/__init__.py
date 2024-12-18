@@ -5,14 +5,15 @@ import sys
 from typing import Annotated
 
 import typer
-from fppclient import FPP
-from fppclient.exceptions import FPPConnectionError, FPPUnsupportedVersionError
 from rich.console import Console
 from rich.live import Live
 from rich.panel import Panel
 from rich.table import Table
 from zeroconf import ServiceStateChange, Zeroconf
 from zeroconf.asyncio import AsyncServiceBrowser, AsyncServiceInfo, AsyncZeroconf
+
+from fppclient import FPP
+from fppclient.exceptions import FPPConnectionError, FPPUnsupportedVersionError
 
 from .async_typer import AsyncTyper
 

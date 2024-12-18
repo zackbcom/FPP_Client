@@ -1,5 +1,5 @@
-# # pylint: disable=W0621
-# """Asynchronous Python client for WLED."""
+# pylint: disable=W0621
+"""Asynchronous Python client for WLED."""
 
 # import asyncio
 

@@ -21,7 +21,7 @@ async def main() -> None:
         #     await fpp.master(on=True)
 
         device = await fpp.update()
-        print(device.state)
+        print(device.system_status)
 
 
 if __name__ == "__main__":
