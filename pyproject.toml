@@ -114,6 +114,8 @@ disable = [
   "duplicate-code",
   "format",
   "unsubscriptable-object",
+  "too-many-statements"
+
 ]
 
 [tool.pylint.SIMILARITIES]
