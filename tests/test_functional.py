@@ -1,13 +1,11 @@
 """Tests for `fpp.FPP`."""
 
-import asyncio
-
 import aiohttp
 import pytest
-from aresponses import Response, ResponsesMockServer
+from aresponses import ResponsesMockServer
 
 from fpp import FPP
-from fpp.exceptions import FPPConnectionError, FPPError
+from fpp.exceptions import FPPError
 
 
 @pytest.mark.asyncio

@@ -139,12 +139,18 @@ ignore = [
   "D213",    # Conflicts with other rules
   "D417",    # False positives in some occasions
   "PLR2004", # Just annoying, not really useful
+  "TD003",
+  "TD002",
 
   # Conflicts with the Ruff formatter
   "COM812",
   "ISC001",
 ]
 select = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
+"src/fpp/models.py" = ["N815"]
 
 [tool.ruff.lint.flake8-pytest-style]
 fixture-parentheses = false

@@ -535,7 +535,7 @@
         }
       },
       {
-  
+
       {
         "endpoint": "git/originLog",
         "methods": {
@@ -2053,7 +2053,7 @@
           }
         }
       },
-  
+
       {
         "endpoint": "testmode",
         "methods": {
@@ -2088,4 +2088,4 @@
       }
     ]
   }
-  
+

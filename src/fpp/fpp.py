@@ -75,7 +75,6 @@ class FPP:
             self.session = aiohttp.ClientSession()
             self._close_session = True
 
-
         try:
             async with asyncio.timeout(self.request_timeout):
                 response = await self.session.request(
@@ -111,13 +110,7 @@ class FPP:
             msg = f"Error occurred while communicating with FPP device at {self.host}"
             raise FPPConnectionError(msg) from exception
 
-        # if "application/json" in content_type and (
-        #     method == "POST"
-        #     and uri == "/json/state"
-        #     and self._device is not None
-        #     and data is not None
-        # ):
-        #     self._device.update_from_dict(data={"state": response_data})
+
 
         return response_data
 
@@ -161,13 +154,6 @@ class FPP:
             raise FPPEmptyResponseError(msg)
         data["sequences"] = sequences
 
-        # if not (presets := await self.request("/presets.json")):
-        #     msg = (
-        #         f"FPP device at {self.host} returned an empty API"
-        #         " response on presets update",
-        #     )
-        #     raise FPPEmptyResponseError(msg)
-        # data["presets"] = presets
 
         if not self._device:
             self._device = Device.from_dict(data)

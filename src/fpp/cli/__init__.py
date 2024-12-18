@@ -14,7 +14,6 @@ from zeroconf.asyncio import AsyncServiceBrowser, AsyncServiceInfo, AsyncZerocon
 
 from fpp import FPP
 from fpp.exceptions import FPPConnectionError, FPPUnsupportedVersionError
-from fpp.models import SystemStatus
 
 from .async_typer import AsyncTyper
 
@@ -66,7 +65,7 @@ def unsupported_version_error_handler(
 
 
 @cli.command("info")
-async def command_info(
+async def command_info(  # noqa: PLR0915
     host: Annotated[
         str,
         typer.Option(
@@ -77,9 +76,7 @@ async def command_info(
     ],
 ) -> None:
     """Show the information about the FPP device."""
-    with console.status(
-        "[cyan]Fetching FPP device information...", spinner="toggle12"
-    ):
+    with console.status("[cyan]Fetching FPP device information...", spinner="toggle12"):
         async with FPP(host) as dev:
             device = await dev.update()
 
@@ -99,53 +96,106 @@ async def command_info(
 
     info_table.add_section()
     if device.system_status.current_playlist:
-        info_table.add_row("current_playlist: count", str(device.system_status.current_playlist.count))
-        info_table.add_row("current_playlist: description", device.system_status.current_playlist.description)
-        info_table.add_row("current_playlist: index", str(device.system_status.current_playlist.index))
-        info_table.add_row("current_playlist: playlist", device.system_status.current_playlist.playlist)
-        info_table.add_row("current_playlist: type", device.system_status.current_playlist.type)
+        info_table.add_row(
+            "current_playlist: count", str(device.system_status.current_playlist.count)
+        )
+        info_table.add_row(
+            "current_playlist: description",
+            device.system_status.current_playlist.description,
+        )
+        info_table.add_row(
+            "current_playlist: index", str(device.system_status.current_playlist.index)
+        )
+        info_table.add_row(
+            "current_playlist: playlist", device.system_status.current_playlist.playlist
+        )
+        info_table.add_row(
+            "current_playlist: type", device.system_status.current_playlist.type
+        )
 
     info_table.add_section()
     if device.system_status.MQTT:
-        info_table.add_row("MQTT: configured", str(device.system_status.MQTT.configured))
+        info_table.add_row(
+            "MQTT: configured", str(device.system_status.MQTT.configured)
+        )
         info_table.add_row("MQTT: connected", str(device.system_status.MQTT.connected))
 
     info_table.add_section()
     if device.system_status.advancedView:
-        info_table.add_row("AdvView: HostName", device.system_status.advancedView.HostName)
-        info_table.add_row("AdvView: HostDescription", device.system_status.advancedView.HostDescription)
-        info_table.add_row("AdvView: Platform", device.system_status.advancedView.Platform)
-        info_table.add_row("AdvView: Variant", device.system_status.advancedView.Variant)
+        info_table.add_row(
+            "AdvView: HostName", device.system_status.advancedView.HostName
+        )
+        info_table.add_row(
+            "AdvView: HostDescription",
+            device.system_status.advancedView.HostDescription,
+        )
+        info_table.add_row(
+            "AdvView: Platform", device.system_status.advancedView.Platform
+        )
+        info_table.add_row(
+            "AdvView: Variant", device.system_status.advancedView.Variant
+        )
         info_table.add_row("AdvView: Mode", device.system_status.advancedView.Mode)
-        info_table.add_row("AdvView: Version", device.system_status.advancedView.Version)
+        info_table.add_row(
+            "AdvView: Version", device.system_status.advancedView.Version
+        )
         info_table.add_row("AdvView: Branch", device.system_status.advancedView.Branch)
-        info_table.add_row("AdvView: OSVersion", device.system_status.advancedView.OSVersion)
-        info_table.add_row("AdvView: OSRelease", device.system_status.advancedView.OSRelease)
-        info_table.add_row("AdvView: channelRanges", device.system_status.advancedView.channelRanges)
-        info_table.add_row("AdvView: majorVersion", str(device.system_status.advancedView.majorVersion))
-        info_table.add_row("AdvView: minorVersion", str(device.system_status.advancedView.minorVersion))
-        info_table.add_row("AdvView: typeId", str(device.system_status.advancedView.typeId))
+        info_table.add_row(
+            "AdvView: OSVersion", device.system_status.advancedView.OSVersion
+        )
+        info_table.add_row(
+            "AdvView: OSRelease", device.system_status.advancedView.OSRelease
+        )
+        info_table.add_row(
+            "AdvView: channelRanges", device.system_status.advancedView.channelRanges
+        )
+        info_table.add_row(
+            "AdvView: majorVersion", str(device.system_status.advancedView.majorVersion)
+        )
+        info_table.add_row(
+            "AdvView: minorVersion", str(device.system_status.advancedView.minorVersion)
+        )
+        info_table.add_row(
+            "AdvView: typeId", str(device.system_status.advancedView.typeId)
+        )
 
         info_table.add_row("AdvView: Kernel", device.system_status.advancedView.Kernel)
-        info_table.add_row("AdvView: LocalGitVersion", device.system_status.advancedView.LocalGitVersion)
-        info_table.add_row("AdvView: RemoteGitVersion", device.system_status.advancedView.RemoteGitVersion)
-        info_table.add_row("AdvView: UpgradeSource", device.system_status.advancedView.UpgradeSource)
-        info_table.add_row("AdvView: IPs", ", ".join(device.system_status.advancedView.IPs))
+        info_table.add_row(
+            "AdvView: LocalGitVersion",
+            device.system_status.advancedView.LocalGitVersion,
+        )
+        info_table.add_row(
+            "AdvView: RemoteGitVersion",
+            device.system_status.advancedView.RemoteGitVersion,
+        )
+        info_table.add_row(
+            "AdvView: UpgradeSource", device.system_status.advancedView.UpgradeSource
+        )
+        info_table.add_row(
+            "AdvView: IPs", ", ".join(device.system_status.advancedView.IPs)
+        )
     info_table.add_section()
     if device.system_status.advancedView.Utilization:
-        info_table.add_row("AdvView: Utilization: CPU", f"{device.system_status.advancedView.Utilization.CPU:.2f}%")
-        info_table.add_row("AdvView: Utilization: Memory", f"{device.system_status.advancedView.Utilization.Memory:.2f}%")
-        info_table.add_row("AdvView: Utilization: Uptime", device.system_status.advancedView.Utilization.Uptime)
+        info_table.add_row(
+            "AdvView: Utilization: CPU",
+            f"{device.system_status.advancedView.Utilization.CPU:.2f}%",
+        )
+        info_table.add_row(
+            "AdvView: Utilization: Memory",
+            f"{device.system_status.advancedView.Utilization.Memory:.2f}%",
+        )
+        info_table.add_row(
+            "AdvView: Utilization: Uptime",
+            device.system_status.advancedView.Utilization.Uptime,
+        )
 
     info_table.add_section()
     if device.playlists:
-        info_table.add_row("playlists: Names", str([playlist.name for playlist in device.playlists]))
-
+        info_table.add_row(
+            "playlists: Names", str([playlist.name for playlist in device.playlists])
+        )
 
     console.print(info_table)
-
-
-
 
 
 @cli.command("scan")
@@ -185,7 +235,7 @@ async def command_scan() -> None:
         if info is None:
             return
 
-        print(info)
+
         console.print(f"[cyan bold]Found service {info.server}: is a FPP device 🎉")
 
         table.add_row(
@@ -216,4 +266,3 @@ async def command_scan() -> None:
 
 if __name__ == "__main__":
     cli()
-
